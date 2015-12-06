@@ -1,13 +1,10 @@
 package com.darkforce.components;
 
-import java.io.IOException;
+import com.darkforce.events.DarkForce;
 
-import com.darkforce.servlets.Comunicator;
-
-public class Label implements Component {
+public class Label extends Component {
 	public static final String HIDE = "hide";
 	public static final String SHOW = "show";
-	private String id;
 	private String value;
 	
 	public Label(String id) {
@@ -16,16 +13,12 @@ public class Label implements Component {
 	
 	public void setValue(String value) {
 		this.value = value;
-		try {
-			this.update();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		this.update();
 	}
 	
-	private void update() throws IOException {
-		Comunicator.sendMessage("{\"action\":\"update\",\"components\":"+toString()+"}");
+	private void update() {
+		//DarkForce.send("{\"action\":\"update\",\"components\":"+toString()+"}");
+		DarkForce.update(this);
 	}
 
 	public String getValue() {

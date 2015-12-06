@@ -1,6 +1,5 @@
 package com.darkforce.servlets;
 
-import java.io.IOException;
 import java.util.HashMap;
 
 import javax.websocket.OnClose;
@@ -10,16 +9,16 @@ import javax.websocket.Session;
 import javax.websocket.server.ServerEndpoint;
 
 import com.darkforce.components.Application;
-import com.darkforce.events.EventBus;
+import com.darkforce.events.DarkForce;
 import com.google.gson.Gson;
 
 @ServerEndpoint(value="/server")
-public class Comunicator {
-	private static Session session;
+public class Communicator {
+	//private static ConcurrentMap<String, EventBus> events = new ConcurrentHashMap<>();
 	
 	@OnOpen
 	public void onOpen(Session session) {
-		Comunicator.session = session;
+		DarkForce.registerSession(session);
 	}
 	
 	@OnMessage
@@ -31,7 +30,8 @@ public class Comunicator {
 			
 			switch(params.get("action")) {
 			case "init":
-				Application app = new Application();
+				Application app = new Application(session.getId());
+				app.init();
 				session.getBasicRemote().sendText(app.toString());
 				break;
 			case "close":
@@ -39,20 +39,14 @@ public class Comunicator {
 				break;
 			
 			case "event":
-				EventBus.fire(params.get("id"), params.get("event"));
+				DarkForce.fireEvent(session.getId(), params.get("id"), params.get("event"));
 				break;
 			}
 		}
 	}
 	
 	@OnClose
-	public void onClose() {
-		
-	}
-	
-	public static void sendMessage(String message) throws IOException {
-		if(session.isOpen()) {
-			session.getBasicRemote().sendText(message);
-		}
+	public void onClose(Session session) {
+		DarkForce.removeSession(session);
 	}
 }

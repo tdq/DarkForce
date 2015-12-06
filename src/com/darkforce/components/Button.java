@@ -1,9 +1,8 @@
 package com.darkforce.components;
 
-import com.darkforce.events.EventBus;
+import com.darkforce.events.DarkForce;
 
-public class Button implements Component {
-	private String id;
+public class Button extends Component {
 	private String value;
 	private String bindedAction = "";
 
@@ -21,7 +20,7 @@ public class Button implements Component {
 	}
 
 	public void onClick(ClickEvent clickEvent) {
-		EventBus.addEvent(id, "click", clickEvent);
+		DarkForce.addEvent(this, "click", clickEvent);
 	}
 
 	public void bindClick(String id, String action) {
