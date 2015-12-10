@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentMap;
 
+import javax.websocket.RemoteEndpoint.Async;
 import javax.websocket.Session;
 
 import com.darkforce.components.ClickEvent;
@@ -18,13 +19,17 @@ public class DarkForce {
 	}
 
 	private static void send(String sessionId, String message) {
-		try {
-			if(sessionId != null && sessions.containsKey(sessionId)) {
-				sessions.get(sessionId).getBasicRemote().sendText(message);
+		if(sessionId != null && sessions.containsKey(sessionId)) {
+			Session session = sessions.get(sessionId);
+			
+			synchronized (session) {
+				try {
+					session.getBasicRemote().sendText(message);
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 			}
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
 		}
 	}
 

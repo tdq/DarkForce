@@ -11,6 +11,7 @@ import javax.websocket.server.ServerEndpoint;
 import com.darkforce.components.Application;
 import com.darkforce.events.DarkForce;
 import com.google.gson.Gson;
+import com.myapp.MyApp;
 
 @ServerEndpoint(value="/server")
 public class Communicator {
@@ -29,17 +30,18 @@ public class Communicator {
 			HashMap<String, String> params = gson.fromJson(message, HashMap.class);
 			
 			switch(params.get("action")) {
+			case "event":
+				DarkForce.fireEvent(session.getId(), params.get("id"), params.get("event"));
+				break;
+			
 			case "init":
-				Application app = new Application(session.getId());
+				Application app = new MyApp();		// TODO use reflection to get necessary application class from application.xml description
+				app.setSessionId(session.getId());
 				app.init();
 				session.getBasicRemote().sendText(app.toString());
 				break;
 			case "close":
 				session.close();
-				break;
-			
-			case "event":
-				DarkForce.fireEvent(session.getId(), params.get("id"), params.get("event"));
 				break;
 			}
 		}

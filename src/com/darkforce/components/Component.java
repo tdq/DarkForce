@@ -1,6 +1,9 @@
 package com.darkforce.components;
 
+import com.darkforce.meta.Autowired;
+
 public class Component {
+	@Autowired(value="sessionId")
 	private String sessionId;
 	protected String id;
 
