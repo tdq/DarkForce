@@ -7,14 +7,14 @@ import java.util.concurrent.ConcurrentMap;
 import javax.websocket.RemoteEndpoint.Async;
 import javax.websocket.Session;
 
-import com.darkforce.components.ClickEvent;
+import com.darkforce.components.Event;
 import com.darkforce.components.Component;
 
 public class DarkForce {
 	private static ConcurrentMap<String, Session> sessions = new ConcurrentHashMap<>();
 	private static ConcurrentMap<String, EventBus> events = new ConcurrentHashMap<>();
 
-	public static void addEvent(Component component, String action, ClickEvent clickEvent) {
+	public static void addEvent(Component component, String action, Event clickEvent) {
 		events.get(component.getSessionId()).addEvent(component.getId(), action, clickEvent);
 	}
 

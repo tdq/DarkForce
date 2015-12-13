@@ -19,7 +19,7 @@ public class Button extends Component {
 		return "{\"type\":\"button\",\"id\":\""+id+"\",\"value\":\""+value+"\""+bindedAction+"}";
 	}
 
-	public void onClick(ClickEvent clickEvent) {
+	public void onClick(Event clickEvent) {
 		DarkForce.addEvent(this, "click", clickEvent);
 	}
 

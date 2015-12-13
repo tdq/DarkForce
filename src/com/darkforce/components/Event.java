@@ -1,5 +1,5 @@
 package com.darkforce.components;
 
-public interface ClickEvent {
+public interface Event {
 	public void onClick();
 }

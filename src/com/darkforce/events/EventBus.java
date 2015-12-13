@@ -3,20 +3,20 @@ package com.darkforce.events;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 
-import com.darkforce.components.ClickEvent;
+import com.darkforce.components.Event;
 
 public class EventBus {
-	private LinkedHashMap<String, HashMap<String, ClickEvent>> events = new LinkedHashMap<>();
+	private LinkedHashMap<String, HashMap<String, Event>> events = new LinkedHashMap<>();
 	
 	public void fire(String id, String eventName) {
 		if(events.containsKey(id) && events.get(id).containsKey(eventName)) {
-			ClickEvent event = events.get(id).get(eventName);
+			Event event = events.get(id).get(eventName);
 			event.onClick();
 		}
 	}
 
-	public void addEvent(String id, String eventName, ClickEvent clickEvent) {
-		HashMap<String, ClickEvent> componentEvents;
+	public void addEvent(String id, String eventName, Event event) {
+		HashMap<String, Event> componentEvents;
 		
 		if(events.containsKey(id) == false) {
 			componentEvents = new HashMap<>();
@@ -25,6 +25,6 @@ public class EventBus {
 			componentEvents = events.get(id);
 		}
 		
-		componentEvents.put(eventName, clickEvent);
+		componentEvents.put(eventName, event);
 	}
 }
