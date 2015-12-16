@@ -9,11 +9,9 @@ public class MyApp extends Application {
 	@Override
 	public void init() {
 		Label label = new Label("label1");
-		//label.setSessionId(sessionId);		// TODO find better solution
 		label.setValue("Hello");
 		
 		Button button = new Button("button1");
-		//button.setSessionId(sessionId);		// TODO find better solution
 		button.setValue("Click me");
 		button.onClick(() -> {
 			Thread th = new Thread(new Runnable() {
