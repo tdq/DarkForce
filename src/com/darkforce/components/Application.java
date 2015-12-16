@@ -8,12 +8,8 @@ import com.darkforce.meta.Shared;
 
 public abstract class Application {
 	private List<Component> components = new LinkedList<>();
-	
-	@Shared(name = "sessionId")
-	protected String sessionId;
 
 	protected void add(Component component) {
-		component.setSessionId(sessionId);
 		this.components.add(component);
 	}
 
@@ -40,8 +36,4 @@ public abstract class Application {
 	}
 
 	public abstract void init();
-
-	public void setSessionId(String id) {
-		this.sessionId = id;
-	}
 }

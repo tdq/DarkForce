@@ -15,7 +15,7 @@ import com.myapp.MyApp;
 
 @ServerEndpoint(value="/server")
 public class Communicator {
-	//private static ConcurrentMap<String, EventBus> events = new ConcurrentHashMap<>();
+	public static ThreadLocal<String> sessionId = new ThreadLocal<>();
 	
 	@OnOpen
 	public void onOpen(Session session) {
@@ -36,7 +36,7 @@ public class Communicator {
 			
 			case "init":
 				Application app = new MyApp();		// TODO use reflection to get necessary application class from application.xml description
-				app.setSessionId(session.getId());
+				sessionId.set(session.getId());
 				app.init();
 				session.getBasicRemote().sendText(app.toString());
 				break;

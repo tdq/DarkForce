@@ -1,18 +1,14 @@
 package com.darkforce.components;
 
-import com.darkforce.meta.Autowired;
+import com.darkforce.servlets.Communicator;
 
 public class Component {
-	@Autowired(value="sessionId")
-	private String sessionId;
+
+	private String sessionId = Communicator.sessionId.get();
 	protected String id;
 
 	public String getSessionId() {
 		return sessionId;
-	}
-
-	public void setSessionId(String sessionId) {
-		this.sessionId = sessionId;
 	}
 
 	public String getId() {
