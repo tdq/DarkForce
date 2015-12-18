@@ -3,11 +3,13 @@ package com.myapp;
 import com.darkforce.components.Application;
 import com.darkforce.components.Button;
 import com.darkforce.components.Label;
+import com.darkforce.components.VerticalLayout;
 
 public class MyApp extends Application {
 
 	@Override
 	public void init() {
+		VerticalLayout layout = new VerticalLayout("vertical1");
 		Label label = new Label("label1");
 		label.setValue("Hello");
 		
@@ -39,8 +41,19 @@ public class MyApp extends Application {
 		hideButton.setValue("Hide label");
 		hideButton.bindClick("label1", Label.HIDE);
 		
-		this.add(label);
-		this.add(button);
-		this.add(hideButton);
+		Button newLabelButton = new Button("button3");
+		newLabelButton.setValue("Create new label");
+		newLabelButton.onClick(() -> {
+			Label newlabel = new Label("label2");
+			newlabel.setValue("New label!!!");
+			layout.add(newlabel);
+		});
+		
+		layout.add(label);
+		layout.add(button);
+		layout.add(hideButton);
+		layout.add(newLabelButton);
+		
+		this.add(layout);
 	}
 }

@@ -2,8 +2,7 @@ var DarkForce = {
 	init: function(url) {
 		var self = this;
 		
-		this.component = $('<div>');
-		$('body').append(this.component);
+		this.component = $('body');
 		
 		this.socket = new WebSocket(url);
 		
@@ -42,7 +41,9 @@ var DarkForce = {
 	
 	updateComponent: function(params) {
 		var component = ComponentFactory.get(params.id);
-		component.update(params);
+		if(component) {
+			component.update(params);
+		}
 	},
 	
 	fireEvent: function(params) {
@@ -59,6 +60,7 @@ var ComponentFactory = {
 		switch(params.type) {
 		case 'label': component = new Label(params); break;
 		case 'button': component = new Button(params); break;
+		case 'vertical': component = new Vertical(params); break;
 		}
 		
 		this.components[params.id] = component;
@@ -120,3 +122,35 @@ function Button(params) {
 }
 
 Button.prototype.dom = Label.prototype.dom;
+
+function Vertical(params) {
+	this.compIds = [];
+	
+	this.component = $('<div>', {
+		class: 'vertical'
+	});
+	
+	for(var i=0; i<params.components.length; ++i) {
+		var element = params.components[i];
+		var comp = ComponentFactory.create(element);
+		this.component.append(comp.dom());
+		this.compIds[element.id] = true;
+	}
+}
+
+Vertical.prototype.update = function(params) {
+	for(var i=0; i<params.components.length; ++i) {
+		var element = params.components[i];
+		
+		if(this.compIds[element.id]){
+			// Element exists
+		} else {
+			// Element is new
+			var comp = ComponentFactory.create(element);
+			this.component.append(comp.dom());
+			this.compIds[element.id] = true;
+		}
+	}
+}
+
+Vertical.prototype.dom = Label.prototype.dom;

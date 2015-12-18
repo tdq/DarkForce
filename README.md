@@ -8,9 +8,9 @@ Requirements:
 
 TODOS:
 
-1. Split connections by user sessions (Done, but I need better solution)
+1. Split connections by user sessions (Done)
 2. Wrap Session.getBasicRemote().sendText() to DarkForce.send() method (Done)
 3. Store separate EventBus for each user session (Done)
 4. Update components states on server
 5. Process forms
-6. Layouts
+6. Layouts (VerticalLayout is created)

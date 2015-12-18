@@ -17,7 +17,6 @@ public class Label extends Component {
 	}
 	
 	private void update() {
-		//DarkForce.send("{\"action\":\"update\",\"components\":"+toString()+"}");
 		DarkForce.update(this);
 	}
 

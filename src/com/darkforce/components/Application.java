@@ -4,8 +4,6 @@ import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 
-import com.darkforce.meta.Shared;
-
 public abstract class Application {
 	private List<Component> components = new LinkedList<>();
 

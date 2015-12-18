@@ -1,0 +1,7 @@
+div.vertical {
+	display: block;
+}
+
+div.vertical > * {
+	display: block;
+}
