@@ -13,4 +13,4 @@ TODOS:
 3. Store separate EventBus for each user session (Done)
 4. Update components states on server
 5. Process forms
-6. Layouts (VerticalLayout is created)
+6. Layouts (VerticalLayout, HorizontalLayout are created)
