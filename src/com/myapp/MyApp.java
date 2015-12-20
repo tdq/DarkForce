@@ -2,6 +2,7 @@ package com.myapp;
 
 import com.darkforce.components.Application;
 import com.darkforce.components.Button;
+import com.darkforce.components.HorizontalLayout;
 import com.darkforce.components.Label;
 import com.darkforce.components.VerticalLayout;
 
@@ -9,7 +10,9 @@ public class MyApp extends Application {
 
 	@Override
 	public void init() {
-		VerticalLayout layout = new VerticalLayout("vertical1");
+		VerticalLayout vertical = new VerticalLayout("vertical1");
+		HorizontalLayout horizontal = new HorizontalLayout("horizontal1");
+		
 		Label label = new Label("label1");
 		label.setValue("Hello");
 		
@@ -46,14 +49,19 @@ public class MyApp extends Application {
 		newLabelButton.onClick(() -> {
 			Label newlabel = new Label("label2");
 			newlabel.setValue("New label!!!");
-			layout.add(newlabel);
+			horizontal.add(newlabel);
 		});
 		
-		layout.add(label);
-		layout.add(button);
-		layout.add(hideButton);
-		layout.add(newLabelButton);
+		Label labels = new Label("label3");
+		labels.setValue("New labels:");
+		horizontal.add(labels);
 		
-		this.add(layout);
+		vertical.add(label);
+		vertical.add(button);
+		vertical.add(hideButton);
+		vertical.add(newLabelButton);
+		vertical.add(horizontal);
+		
+		this.add(vertical);
 	}
 }

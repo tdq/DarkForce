@@ -1,7 +1,11 @@
-div.vertical {
+div.vertical, div.horizontal {
 	display: block;
 }
 
 div.vertical > * {
 	display: block;
+}
+
+div.horizontal > * {
+	display: inline-block;
 }

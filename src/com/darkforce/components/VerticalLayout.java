@@ -22,7 +22,7 @@ public class VerticalLayout extends Component {
 		}
 	}
 	
-	private String buildComponents() {
+	protected String buildComponents() {
 		StringBuilder builder = new StringBuilder();
 		Iterator<Component> iter = components.iterator();
 		
