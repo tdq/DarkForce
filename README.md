@@ -14,3 +14,4 @@ TODOS:
 4. Update components states on server
 5. Process forms
 6. Layouts (VerticalLayout, HorizontalLayout are created)
+7. Support user components
