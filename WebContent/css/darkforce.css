@@ -1,11 +1,15 @@
-div.vertical, div.horizontal {
+df-vertical, df-horizontal {
 	display: block;
 }
 
-div.vertical > * {
+df-vertical > df-cell {
 	display: block;
 }
 
-div.horizontal > * {
+df-horizontal > df-cell {
 	display: inline-block;
+}
+
+df-label {
+	display: inline;
 }

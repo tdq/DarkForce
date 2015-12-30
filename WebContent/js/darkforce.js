@@ -96,10 +96,8 @@ var ComponentFactory = {
  * Label section
  */
 function Label(params) {	
-	this.component = $('<span>', {
-		class: 'label',
-		html: params.value || 'Label'
-	});
+	this.component = $('<df-label>');	
+	this.component.html(params.value || 'Label');
 }
 
 Label.prototype.action = function(action) {
@@ -167,14 +165,12 @@ ComponentFactory.register('button', function(params) {
 function Vertical(params) {	
 	this.compIds = [];
 	
-	this.component = $('<div>', {
-		class: 'vertical'
-	});
+	this.component = $('<df-vertical>');
 	
 	for(var i=0; i<params.components.length; ++i) {
 		var element = params.components[i];
 		var comp = ComponentFactory.create(element);
-		var cell = $('<div>');
+		var cell = $('<df-cell>');
 		cell.append(comp.dom());
 		this.component.append(cell);
 		this.compIds[element.id] = true;
@@ -190,7 +186,7 @@ Vertical.prototype.update = function(params) {
 		} else {
 			// Element is new
 			var comp = ComponentFactory.create(element);
-			var cell = $('<div>');
+			var cell = $('<df-cell>');
 			cell.append(comp.dom());
 			this.component.append(cell);
 			this.compIds[element.id] = true;
@@ -212,14 +208,12 @@ ComponentFactory.register('vertical', function(params) {
 function Horizontal(params) {	
 	this.compIds = [];
 	
-	this.component = $('<div>', {
-		class: 'horizontal'
-	});
+	this.component = $('<df-horizontal>');
 	
 	for(var i=0; i<params.components.length; ++i) {
 		var element = params.components[i];
 		var comp = ComponentFactory.create(element);
-		var cell = $('<div>');
+		var cell = $('<df-cell>');
 		cell.append(comp.dom());
 		this.component.append(cell);
 		this.compIds[element.id] = true;
