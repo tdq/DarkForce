@@ -93,6 +93,49 @@ var ComponentFactory = {
 }
 
 /**
+ * Extend parent class by child class
+ * @param Child
+ * @param Parent
+ */
+function extend(Child, Parent) {
+    var F = function () { };
+    F.prototype = Parent.prototype;
+    var f = new F();
+    
+    for (var prop in Child.prototype) f[prop] = Child.prototype[prop];
+    Child.prototype = f;
+    Child.prototype.super = Parent.prototype;
+}
+
+/**
+ * Abstract component
+ * @param params
+ */
+function Component(params) {
+	this.component = $('<div>');
+}
+
+Component.prototype = {
+	constructor: Component,
+		
+	show : function() {
+		this.component.show();
+	},
+	
+	hide : function() {
+		this.component.hide();
+	},
+	
+	action: function(action) {},
+	
+	dom : function() {
+		return this.component;
+	},
+	
+	update : function(params) {}
+}
+
+/**
  * Label section
  */
 function Label(params) {	
@@ -100,23 +143,13 @@ function Label(params) {
 	this.component.html(params.value || 'Label');
 }
 
+extend(Label, Component);
+
 Label.prototype.action = function(action) {
 	switch(action) {
 	case 'hide': this.hide(); break;
 	case 'show': this.show(); break;
 	}
-}
-
-Label.prototype.show = function() {
-	this.component.show();
-}
-
-Label.prototype.hide = function() {
-	this.component.hide();
-}
-
-Label.prototype.dom = function() {
-	return this.component;
 }
 
 Label.prototype.update = function(params) {
@@ -151,7 +184,7 @@ function Button(params) {
 	});
 }
 
-Button.prototype.dom = Label.prototype.dom;
+extend(Button, Component);
 
 ComponentFactory.register('button', function(params) {
 	return new Button(params);
@@ -177,6 +210,8 @@ function Vertical(params) {
 	}
 }
 
+extend(Vertical, Component);
+
 Vertical.prototype.update = function(params) {
 	for(var i=0; i<params.components.length; ++i) {
 		var element = params.components[i];
@@ -193,8 +228,6 @@ Vertical.prototype.update = function(params) {
 		}
 	}
 }
-
-Vertical.prototype.dom = Label.prototype.dom;
 
 ComponentFactory.register('vertical', function(params) {
 	return new Vertical(params);
@@ -220,8 +253,7 @@ function Horizontal(params) {
 	}
 }
 
-Horizontal.prototype.update = Vertical.prototype.update;
-Horizontal.prototype.dom = Label.prototype.dom;
+extend(Horizontal, Vertical);
 
 ComponentFactory.register('horizontal', function(params) {
 	return new Horizontal(params);
