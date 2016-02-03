@@ -47,9 +47,9 @@ public class DarkForce {
 		events.remove(session.getId());
 	}
 
-	public static void fireEvent(String sessionId, String componentId, String action) {
+	public static void fireEvent(String sessionId, String componentId, String action, String value) {
 		if(sessionId != null && sessions.containsKey(sessionId)) {
-			events.get(sessionId).fire(componentId, action);
+			events.get(sessionId).fire(componentId, action, value);
 		}
 	}
 }

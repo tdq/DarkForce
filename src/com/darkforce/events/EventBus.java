@@ -8,10 +8,10 @@ import com.darkforce.components.Event;
 public class EventBus {
 	private LinkedHashMap<String, HashMap<String, Event>> events = new LinkedHashMap<>();
 	
-	public void fire(String id, String eventName) {
+	public void fire(String id, String eventName, String value) {
 		if(events.containsKey(id) && events.get(id).containsKey(eventName)) {
 			Event event = events.get(id).get(eventName);
-			event.onClick();
+			event.onClick(value);	//TODO I have to think how to proceed parameters for some events
 		}
 	}
 

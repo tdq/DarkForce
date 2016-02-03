@@ -3,6 +3,7 @@ package com.myapp;
 import com.darkforce.components.Application;
 import com.darkforce.components.Button;
 import com.darkforce.components.HorizontalLayout;
+import com.darkforce.components.InputText;
 import com.darkforce.components.Label;
 import com.darkforce.components.VerticalLayout;
 
@@ -18,7 +19,7 @@ public class MyApp extends Application {
 		
 		Button button = new Button("button1");
 		button.setValue("Click me");
-		button.onClick(() -> {
+		button.onClick((value) -> {
 			Thread th = new Thread(new Runnable() {
 				
 				@Override
@@ -46,7 +47,7 @@ public class MyApp extends Application {
 		
 		Button newLabelButton = new Button("button3");
 		newLabelButton.setValue("Create new label");
-		newLabelButton.onClick(() -> {
+		newLabelButton.onClick((value) -> {
 			Label newlabel = new Label("label2");
 			newlabel.setValue("New label!!!");
 			horizontal.add(newlabel);
@@ -56,11 +57,22 @@ public class MyApp extends Application {
 		labels.setValue("New labels:");
 		horizontal.add(labels);
 		
+		InputText inputText = new InputText("input1");
+		inputText.setValue("Type here");
+		
+		Button getTextButton = new Button("button4");
+		getTextButton.setValue("Get value");
+		getTextButton.onClick((value) -> {
+			labels.setValue(inputText.getValue());
+		});
+		
 		vertical.add(label);
 		vertical.add(button);
 		vertical.add(hideButton);
 		vertical.add(newLabelButton);
 		vertical.add(horizontal);
+		vertical.add(inputText);
+		vertical.add(getTextButton);
 		
 		this.add(vertical);
 	}

@@ -31,7 +31,7 @@ public class Communicator {
 			
 			switch(params.get("action")) {
 			case "event":
-				DarkForce.fireEvent(session.getId(), params.get("id"), params.get("event"));
+				DarkForce.fireEvent(session.getId(), params.get("id"), params.get("event"), params.get("value"));
 				break;
 			
 			case "init":

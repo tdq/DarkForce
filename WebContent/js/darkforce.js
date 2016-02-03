@@ -50,7 +50,7 @@ var DarkForce = {
 	},
 	
 	fireEvent: function(params) {
-		var request = {action: 'event', id: params.id, event: params.type};
+		var request = {action: 'event', id: params.id, event: params.type, value: params.value};
 		this.socket.send(JSON.stringify(request));
 	}
 }
@@ -260,3 +260,27 @@ ComponentFactory.register('horizontal', function(params) {
 });
 
 //=============================================================
+
+/**
+ * InputText component section
+ */
+function InputText(params) {
+	this.component = $('<input>', {
+		'type' : 'text',
+		'value' : params.value
+	});
+	
+	this.component.change(function() {
+		DarkForce.fireEvent({
+			type: 'change',
+			id: params.id,
+			value: $(this).val()
+		});
+	});
+}
+
+extend(InputText, Component);
+
+ComponentFactory.register('inputText', function(params) {
+	return new InputText(params);
+});
