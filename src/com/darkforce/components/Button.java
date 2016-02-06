@@ -5,6 +5,10 @@ import com.darkforce.events.DarkForce;
 public class Button extends Component {
 	private String value;
 	private String bindedAction = "";
+	
+	public interface ClickEvent {
+		public void onClick();
+	}
 
 	public Button(String id) {
 		this.id = id;
@@ -19,8 +23,8 @@ public class Button extends Component {
 		return "{\"type\":\"button\",\"id\":\""+id+"\",\"value\":\""+value+"\""+bindedAction+"}";
 	}
 
-	public void onClick(Event clickEvent) {
-		DarkForce.addEvent(this, "click", clickEvent);
+	public void onClick(ClickEvent clickEvent) {
+		DarkForce.addEvent(this, "click", (String value) -> clickEvent.onClick());
 	}
 
 	public void bindClick(String id, String action) {

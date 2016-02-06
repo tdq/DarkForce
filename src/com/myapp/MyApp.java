@@ -19,7 +19,7 @@ public class MyApp extends Application {
 		
 		Button button = new Button("button1");
 		button.setValue("Click me");
-		button.onClick((value) -> {
+		button.onClick(() -> {
 			Thread th = new Thread(new Runnable() {
 				
 				@Override
@@ -47,7 +47,7 @@ public class MyApp extends Application {
 		
 		Button newLabelButton = new Button("button3");
 		newLabelButton.setValue("Create new label");
-		newLabelButton.onClick((value) -> {
+		newLabelButton.onClick(() -> {
 			Label newlabel = new Label("label2");
 			newlabel.setValue("New label!!!");
 			horizontal.add(newlabel);
@@ -62,7 +62,7 @@ public class MyApp extends Application {
 		
 		Button getTextButton = new Button("button4");
 		getTextButton.setValue("Get value");
-		getTextButton.onClick((value) -> {
+		getTextButton.onClick(() -> {
 			labels.setValue(inputText.getValue());
 		});
 		

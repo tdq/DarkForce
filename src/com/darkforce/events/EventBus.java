@@ -11,7 +11,7 @@ public class EventBus {
 	public void fire(String id, String eventName, String value) {
 		if(events.containsKey(id) && events.get(id).containsKey(eventName)) {
 			Event event = events.get(id).get(eventName);
-			event.onClick(value);	//TODO I have to think how to proceed parameters for some events
+			event.onEvent(value);	//TODO I have to think how to proceed parameters for some events
 		}
 	}
 
