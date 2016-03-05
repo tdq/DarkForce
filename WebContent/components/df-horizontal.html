@@ -1,0 +1,23 @@
+<link rel="import" href="polymer/polymer.html">
+
+<dom-module name="df-horizontal">
+	<style>
+		:host {
+			display: block;
+		}
+		
+		:host ::content > df-cell {
+			display: inline-block;
+		}
+	</style>
+	
+	<template>
+		<content select="df-cell"></content>
+	</template>
+	
+	<script>
+		Polymer({
+			is : "df-horizontal"
+		});
+	</script>
+</dom-module>
