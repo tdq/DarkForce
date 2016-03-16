@@ -58,8 +58,8 @@ public class MyApp extends Application {
         horizontal.add(labels);
 
         InputText inputText = new InputText("input1");
-        inputText.setValue("Type here");
-        //inputText.placeHolder("Type here");
+        //inputText.setValue("Type here");
+        inputText.placeHolder("Type here");
 
         Button getTextButton = new Button("button4");
         getTextButton.setValue("Get value");

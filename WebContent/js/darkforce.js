@@ -11,16 +11,16 @@ var DarkForce = {
 
         this.socket.onopen = function() {
             self.socket.send(JSON.stringify({action: 'init'}));
-        }
+        };
 
         this.socket.onclose = function() {
 
-        }
+        };
 
         this.socket.onmessage = function(event) {
             var model = $.parseJSON(event.data);
             self.renderModel(model);
-        }
+        };
     },
 
     append: function(component) {
@@ -53,7 +53,7 @@ var DarkForce = {
         var request = {action: 'event', id: params.id, event: params.type, value: params.value};
         this.socket.send(JSON.stringify(request));
     }
-}
+};
 
 /**
  * Component factory stores components and creates new ones.
@@ -90,7 +90,7 @@ var ComponentFactory = {
     register: function(type, constructor) {
         this.types[type] = constructor;
     }
-}
+};
 
 /**
  * Extend parent class by child class
@@ -133,7 +133,7 @@ Component.prototype = {
     },
 
     update : function(params) {}
-}
+};
 
 /**
  * Label section
@@ -150,11 +150,11 @@ Label.prototype.action = function(action) {
     case 'hide': this.hide(); break;
     case 'show': this.show(); break;
     }
-}
+};
 
 Label.prototype.update = function(params) {
     this.component.html(params.value);
-}
+};
 
 ComponentFactory.register('label', function(params) {
     return new Label(params);
@@ -227,7 +227,7 @@ Vertical.prototype.update = function(params) {
             this.compIds[element.id] = true;
         }
     }
-}
+};
 
 ComponentFactory.register('vertical', function(params) {
     return new Vertical(params);
@@ -265,12 +265,21 @@ ComponentFactory.register('horizontal', function(params) {
  * InputText component section
  */
 function InputText(params) {
+    
     this.component = $('<input>', {
         'type' : 'text',
-        'value' : params.value,
+        //'value' : params.value,
         //'placeholder' : params.placeholder,
         'class' : 'glass'
     });
+    
+    if(params.hasOwnProperty('value')) {
+        this.component.attr('value', params.value);
+    }
+    
+    if(params.hasOwnProperty('placeholder')) {
+        this.component.attr('placeholder', params.placeholder);
+    }
 
     this.component.change(function() {
         DarkForce.fireEvent({

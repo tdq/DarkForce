@@ -31,7 +31,7 @@ public class InputText extends Component{
             command.put("type", "inputText");
             command.put("id", id);
             command.put("value", value);
-            //command.put("palceholder", placeholder);
+            command.put("placeholder", placeholder);
             
             Gson gson = new Gson();
             
