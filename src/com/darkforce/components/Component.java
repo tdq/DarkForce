@@ -4,7 +4,7 @@ import com.darkforce.servlets.Communicator;
 
 public class Component {
 
-	private String sessionId = Communicator.sessionId.get();
+	private final String sessionId = Communicator.sessionId.get();
 	protected String id;
 
 	public String getSessionId() {

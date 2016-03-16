@@ -5,7 +5,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 public abstract class Application {
-	private List<Component> components = new LinkedList<>();
+	private final List<Component> components = new LinkedList<>();
 
 	protected void add(Component component) {
 		this.components.add(component);

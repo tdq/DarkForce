@@ -1,17 +1,42 @@
-/*
-df-vertical, df-horizontal {
-	display: block;
+body {
+    background-color: #1a1a1a;
+    font-family: sans-serif;
+    font-size: 14px;
+    color: #c1c1c1;
 }
 
-df-vertical > df-cell {
-	display: block;
-}
-
-df-horizontal > df-cell {
-	display: inline-block;
+df-cell {
+    margin: 2px;
 }
 
 df-label {
-	display: inline;
+    color: #3894ca;
 }
-*/
+
+.glass {
+    border: 1px solid #535353;
+	background-color: rgba(15,15,15,0.95);
+	border-radius: 5px;
+	color: #e1e1e1;
+	transition: background-color 0.5s ease;
+}
+
+.glass:hover {
+    background-color: rgba(25,25,25,0.95);
+}
+
+input[type=text] {
+    padding: 0 5px;
+    height: 25px;
+}
+
+button {
+    height: 25px;
+}
+
+input:focus,
+select:focus,
+textarea:focus,
+button:focus {
+    outline: none;
+}
