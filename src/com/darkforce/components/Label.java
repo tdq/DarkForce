@@ -8,10 +8,6 @@ public class Label extends Component {
 
     private String value;
 
-    public Label(String id) {
-        this.id = id;
-    }
-
     public void setValue(String value) {
         this.value = value;
         this.update();
@@ -27,6 +23,6 @@ public class Label extends Component {
 
     @Override
     public String toString() {
-        return "{\"type\":\"label\",\"id\":\""+id+"\",\"value\":\""+value+"\"}";
+        return "{\"type\":\"label\",\"id\":\""+getId()+"\",\"value\":\""+value+"\"}";
     }
 }

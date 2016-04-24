@@ -10,17 +10,13 @@ public class Button extends Component {
         public void onClick();
     }
 
-    public Button(String id) {
-        this.id = id;
-    }
-
     public void setValue(String value) {
         this.value = value;
     }
 
     @Override
     public String toString() {
-        return "{\"type\":\"button\",\"id\":\""+id+"\",\"value\":\""+value+"\""+bindedAction+"}";
+        return "{\"type\":\"button\",\"id\":\""+getId()+"\",\"value\":\""+value+"\""+bindedAction+"}";
     }
 
     public void onClick(ClickEvent clickEvent) {

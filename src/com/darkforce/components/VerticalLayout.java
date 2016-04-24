@@ -10,14 +10,10 @@ public class VerticalLayout extends Component {
     private final LinkedList<Component> components = new LinkedList<>();
     private final HashSet<String> componentsIds = new HashSet<>();
 
-    public VerticalLayout(String id) {
-        this.id = id;
-    }
-
     public void add(Component component) {
-        if(componentsIds.contains(component.id) == false) {
+        if(componentsIds.contains(component.getId()) == false) {
             components.add(component);
-            componentsIds.add(component.id);
+            componentsIds.add(component.getId());
             DarkForce.update(this);
         }
     }
@@ -41,6 +37,6 @@ public class VerticalLayout extends Component {
 
     @Override
     public String toString() {
-        return "{\"type\":\"vertical\",\"id\":\""+id+"\",\"components\":"+buildComponents()+"}";
+        return "{\"type\":\"vertical\",\"id\":\""+getId()+"\",\"components\":"+buildComponents()+"}";
     }
 }

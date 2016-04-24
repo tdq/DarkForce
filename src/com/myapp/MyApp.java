@@ -11,13 +11,14 @@ public class MyApp extends Application {
 
     @Override
     public void init() {
-        VerticalLayout vertical = new VerticalLayout("vertical1");
-        HorizontalLayout horizontal = new HorizontalLayout("horizontal1");
+        VerticalLayout vertical = new VerticalLayout();
+        HorizontalLayout horizontal = new HorizontalLayout();
 
-        Label label = new Label("label1");
+        Label label = new Label();
+        label.setId("label1");
         label.setValue("Hello");
 
-        Button button = new Button("button1");
+        Button button = new Button();
         button.setValue("Click me");
         button.onClick(() -> {
             Thread th = new Thread(new Runnable() {
@@ -41,32 +42,32 @@ public class MyApp extends Application {
 
         button.bindClick("label1", Label.SHOW);
 
-        Button hideButton = new Button("button2");
+        Button hideButton = new Button();
         hideButton.setValue("Hide label");
         hideButton.bindClick("label1", Label.HIDE);
 
-        Button newLabelButton = new Button("button3");
+        Button newLabelButton = new Button();
         newLabelButton.setValue("Create new label");
         newLabelButton.onClick(() -> {
-            Label newlabel = new Label("label2");
+            Label newlabel = new Label();
             newlabel.setValue("New label!!!");
             horizontal.add(newlabel);
         });
 
-        Label labels = new Label("label3");
+        Label labels = new Label();
         labels.setValue("New labels:");
         horizontal.add(labels);
 
-        InputText inputText = new InputText("input1");
+        InputText inputText = new InputText();
         //inputText.setValue("Type here");
         inputText.placeHolder("Type here");
 
-        Button getTextButton = new Button("button4");
+        Button getTextButton = new Button();
         getTextButton.setValue("Get value");
         getTextButton.onClick(() -> {
             labels.setValue(inputText.getValue());
         });
-
+        
         vertical.add(label);
         vertical.add(button);
         vertical.add(hideButton);

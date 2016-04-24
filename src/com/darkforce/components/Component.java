@@ -5,14 +5,25 @@ import com.darkforce.servlets.Communicator;
 public class Component {
 
 	private final String sessionId = Communicator.sessionId.get();
-	protected String id;
+	private String domId;
+	private static long componentCounter = 0l;
+	private String componentId;
 
+	public Component() {
+		componentCounter++;
+		componentId = "Component"+componentCounter;
+	}
+	
 	public String getSessionId() {
 		return sessionId;
 	}
+	
+	public void setId(String id) {
+		this.domId = id;
+	}
 
 	public String getId() {
-		return id;
+		return domId != null && domId.isEmpty() == false ? domId : componentId;
 	}
 
 }

@@ -295,3 +295,22 @@ extend(InputText, Component);
 ComponentFactory.register('inputText', function(params) {
     return new InputText(params);
 });
+
+//=============================================================
+
+/**
+ * VaadinUpload component section
+ */
+function VaadinUpload(params) {
+	this.component = $('<vaadin-upload>', {
+		
+	});
+}
+
+extend(VaadinUpload, Component);
+
+ComponentFactory.register('vaadinUpload', function(params) {
+	return new VaadinUpload(params);
+});
+
+//=============================================================
