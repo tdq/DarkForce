@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" type="text/css" href="css/darkforce.css">
+<script type="text/javascript" src="js/webcomponents-lite.min.js"></script>
+<script type="text/javascript" src="js/darkforce.js"></script>
+
+<link rel="import" href="components/darkforce-components.html">
+</head>
+
+<body>
+
+</body>
+
+<script>
+	var model = {
+		components : [ {
+			id : 'inputText_1',
+			placeholder : 'Type here',
+			bind : {
+				id : 'label_1',
+				action : 'setValue'
+			}
+		}, {
+			id : 'label_1'
+		}, {
+			id : 'button_1',
+			value : 'Clear',
+			bind : {
+				id : 'inputText_1',
+				action : 'clear'
+			}
+		} ]
+	};
+
+	DarkForce.init(model);
+</script>
+</html>
